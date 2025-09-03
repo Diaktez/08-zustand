@@ -8,31 +8,44 @@ import NotesClient from './Notes.client';
 import { NoteTag } from '@/types/note';
 import { Metadata } from 'next';
 
-// type Props = {
-//   params: { slug: string[] };
-// };
+const TAG_DESCRIPTIONS: Record<string, string> = {
+  All: 'Browse all your notes in NoteHUB.',
+  Work: 'Keep track of your work-related notes and tasks.',
+  Personal: 'Manage your personal thoughts and ideas.',
+  Meeting: 'Review all your meeting notes and summaries.',
+  Shopping: 'Check your shopping lists and related notes.',
+  Todo: 'Stay on top of your todos and tasks.',
+};
 
 type Props = {
   params: Promise<{ slug: string[] }>;
 };
 
-export async function generateMetadata({ params }: Props) {
-  const { slug } = await params;
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string[] };
+}) {
+  const { slug } = params;
   const filter = slug?.[0] || 'All';
+  const description =
+    TAG_DESCRIPTIONS[filter] || `Notes tagged with ${filter} in NoteHUB.`;
+  const title =
+    filter === 'All' ? 'All Notes | NoteHUB' : `${filter} Notes | NoteHUB`;
 
   return {
-    title: `Notes filtered by ${filter} | NoteHUB`,
-    description: `Browse your notes filtered by tag "${filter}" in NoteHUB.`,
+    title,
+    description,
     openGraph: {
-      title: `Notes filtered by ${filter} | NoteHUB`,
-      description: `Easily explore notes that are tagged with ${filter} in NoteHUB.`,
+      title,
+      description,
       url: `https://08-zustand-blush-one.vercel.app/notes/filter/${filter}`,
       images: [
         {
           url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
           width: 1200,
           height: 600,
-          alt: `Notes filtered by ${filter}`,
+          alt: title,
         },
       ],
       type: 'website',
