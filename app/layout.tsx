@@ -17,7 +17,22 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'NoteHUB',
-  description: 'Create your own digital notebook',
+  description:
+    'Create, edit, and delete notes, and organize them with tags all in one place.',
+  openGraph: {
+    title: 'NoteHUB app',
+    description: 'My NoteHUB Application',
+    url: 'https://08-zustand-blush-one.vercel.app/',
+    images: [
+      {
+        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        width: 1000,
+        height: 600,
+        alt: 'NoteHUB',
+      },
+    ],
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
