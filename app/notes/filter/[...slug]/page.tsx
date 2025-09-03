@@ -8,6 +8,10 @@ import NotesClient from './Notes.client';
 import { NoteTag } from '@/types/note';
 import { Metadata } from 'next';
 
+type Props = {
+  params: Promise<{ slug: string[] }>;
+};
+
 const TAG_DESCRIPTIONS: Record<string, string> = {
   All: 'Browse all your notes in NoteHUB.',
   Work: 'Keep track of your work-related notes and tasks.',
@@ -15,10 +19,6 @@ const TAG_DESCRIPTIONS: Record<string, string> = {
   Meeting: 'Review all your meeting notes and summaries.',
   Shopping: 'Check your shopping lists and related notes.',
   Todo: 'Stay on top of your todos and tasks.',
-};
-
-type Props = {
-  params: Promise<{ slug: string[] }>;
 };
 
 export async function generateMetadata({
