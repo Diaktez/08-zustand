@@ -6,27 +6,13 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let path = '';
-
-  if (params.slug && params.slug.length > 0) {
-    path = '/';
-    for (let i = 0; i < params.slug.length; i++) {
-      path += params.slug[i];
-      if (i < params.slug.length - 1) {
-        path += '/';
-      }
-    }
-  }
-
   return {
-    title: `404 - Page Not Found ${path}`,
-    description: `The page "${path || 'unknown'}" does not exist on NoteHUB.`,
+    title: '404 - Page Not Found | NoteHUB',
+    description: 'The page you are looking for does not exist on NoteHUB.',
     openGraph: {
-      title: `404 - Page Not Found ${path}`,
-      description: `Oops! The page "${
-        path || 'unknown'
-      }" you are trying to access does not exist.`,
-      url: `https://08-zustand-blush-one.vercel.app/${path}`,
+      title: '404 - Page Not Found | NoteHUB',
+      description: 'Oops! The page you are trying to access does not exist.',
+      url: 'https://08-zustand-blush-one.vercel.app/not-found',
       images: [
         {
           url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',

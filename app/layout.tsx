@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     'Create, edit, and delete notes, and organize them with tags all in one place.',
   openGraph: {
     title: 'NoteHUB app',
-    description: 'My NoteHUB Application',
+    description: 'NoteHUB Application',
     url: 'https://08-zustand-blush-one.vercel.app/',
     images: [
       {
