@@ -12,24 +12,23 @@ type Props = {
   params: Promise<{ slug: string[] }>;
 };
 
-const TAG_DESCRIPTIONS: Record<string, string> = {
-  All: 'Browse all your notes in NoteHUB.',
-  Work: 'Keep track of your work-related notes and tasks.',
-  Personal: 'Manage your personal thoughts and ideas.',
-  Meeting: 'Review all your meeting notes and summaries.',
-  Shopping: 'Check your shopping lists and related notes.',
-  Todo: 'Stay on top of your todos and tasks.',
-};
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string[] };
-}) {
-  const { slug } = params;
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
   const filter = slug?.[0] || 'All';
+
+  // Описания для каждой категории
+  const descriptions: { [key: string]: string } = {
+    All: 'Browse all your notes in NoteHUB.',
+    Work: 'Keep track of your work-related notes and tasks.',
+    Personal: 'Manage your personal thoughts and ideas.',
+    Meeting: 'Review all your meeting notes and summaries.',
+    Shopping: 'Check your shopping lists and related notes.',
+    Todo: 'Stay on top of your todos and tasks.',
+  };
+
+  // Берём описание для выбранного фильтра или дефолтное
   const description =
-    TAG_DESCRIPTIONS[filter] || `Notes tagged with ${filter} in NoteHUB.`;
+    descriptions[filter] || `Notes tagged with ${filter} in NoteHUB.`;
   const title =
     filter === 'All' ? 'All Notes | NoteHUB' : `${filter} Notes | NoteHUB`;
 
