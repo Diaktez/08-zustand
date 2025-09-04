@@ -32,14 +32,6 @@ export const fetchNotes = async (
   return response.data;
 };
 
-export const fetchNotesCount = async (tag?: NoteTag): Promise<number> => {
-  const response = await axios.get<FetchNotesResponse>('notes/', {
-    params: { page: 1, perPage: 1, tag },
-    headers,
-  });
-  return response.data.totalItems;
-};
-
 export const fetchNoteById = async (id: string): Promise<Note> => {
   const response = await axios.get<Note>(`notes/${id}`, { headers });
   return response.data;

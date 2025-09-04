@@ -7,37 +7,29 @@ import {
 import NotesClient from './Notes.client';
 import { NoteTag } from '@/types/note';
 import { Metadata } from 'next';
-import { fetchNotesCount } from '@/lib/api';
 
 type Props = {
   params: Promise<{ slug: string[] }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const filter = slug?.[0] || 'All';
 
-  const count = await fetchNotesCount(
-    filter === 'All' ? undefined : (filter as NoteTag)
-  );
-
   const descriptions: { [key: string]: string } = {
-    All: 'Browse all your notes (${count}) in NoteHUB.',
-    Work: 'Keep track of your work-related notes (${count}) in NoteHUB.',
-    Personal: 'Manage your personal thoughts and ideas (${count}).',
-    Meeting: 'Review all your meeting notes and summaries (${count}).',
-    Shopping: 'Check your shopping lists and related notes (${count}).',
-    Todo: 'Stay on top of your todos and tasks (${count}).',
+    All: 'Browse all your notes in NoteHUB.',
+    Work: 'Keep track of your work-related notes and tasks.',
+    Personal: 'Manage your personal thoughts and ideas.',
+    Meeting: 'Review all your meeting notes and summaries.',
+    Shopping: 'Check your shopping lists and related notes.',
+    Todo: 'Stay on top of your todos and tasks.',
   };
 
   const title =
-    filter === 'All'
-      ? `All Notes (${count}) | NoteHUB`
-      : `${filter} Notes (${count}) | NoteHUB`;
+    filter === 'All' ? 'All Notes in NoteHUB' : `${filter} Notes in NoteHUB`;
 
   const description =
-    descriptions[filter] ||
-    `Notes tagged with ${filter} (${count}) in NoteHUB.`;
+    descriptions[filter] || `Notes tagged with ${filter} in NoteHUB.`;
 
   return {
     title,
