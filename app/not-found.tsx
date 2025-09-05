@@ -4,10 +4,14 @@ import css from './page.module.css';
 export const metadata: Metadata = {
   title: '404 - Page Not Found | NoteHUB',
   description: 'The page you are looking for does not exist on NoteHUB.',
+  alternates: {
+    canonical: 'https://08-zustand-blush-one.vercel.app/not-found',
+  },
   openGraph: {
     title: '404 - Page Not Found | NoteHUB',
     description: 'Oops! The page you are trying to access does not exist.',
     url: 'https://08-zustand-blush-one.vercel.app/not-found',
+
     images: [
       {
         url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
